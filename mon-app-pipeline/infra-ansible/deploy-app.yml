@@ -1,0 +1,11 @@
+- name: Déployer l'application de test
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Lancer le conteneur de l'application
+      community.docker.docker_container:
+        name: mon-app-production
+        image: mon-app-pipeline
+        state: started
+        published_ports:
+          - "3000:3000"
